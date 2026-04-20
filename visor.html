@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Visor IFC – Taller Pre‑aislado</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    #viewer-container { width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+
+<div id="viewer-container"></div>
+
+<script type="module">
+  import { IFCViewerAPI } from 'https://unpkg.com/web-ifc-viewer@latest/dist/web-ifc-viewer.esm.js';
+
+  const container = document.getElementById('viewer-container');
+  const viewer = new IFCViewerAPI({
+    container,
+    backgroundColor: new Uint8Array([255, 255, 255])
+  });
+
+  // 👉 Tu IFC cargado desde GitHub RAW
+  const IFC_URL = "https://raw.githubusercontent.com/iabealianza/piloto1-ia/refs/heads/main/taller_preaislado_ia.ifc";
+
+  async function cargarIFC() {
+    await viewer.IFC.loadIfcUrl(IFC_URL);
+    viewer.context.renderer.postProduction.active = true;
+  }
+
+  cargarIFC();
+</script>
+
+</body>
+</html>
