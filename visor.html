@@ -12,16 +12,22 @@
 
 <div id="viewer-container"></div>
 
-<script type="module">
-  import { IFCViewerAPI } from 'https://unpkg.com/web-ifc-viewer@latest/dist/web-ifc-viewer.esm.js';
+<!-- Carga de THREE.js -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
 
+<!-- Carga del visor IFC.js compatible con GitHub Pages -->
+<script src="https://cdn.jsdelivr.net/npm/web-ifc-viewer@latest/dist/IFC.min.js"></script>
+
+<script>
   const container = document.getElementById('viewer-container');
-  const viewer = new IFCViewerAPI({
+
+  // Crear visor
+  const viewer = new IfcViewerAPI({
     container,
     backgroundColor: new Uint8Array([255, 255, 255])
   });
 
-  // 👉 Tu IFC cargado desde GitHub RAW
+  // URL de tu IFC en GitHub RAW
   const IFC_URL = "https://raw.githubusercontent.com/iabealianza/piloto1-ia/refs/heads/main/taller_preaislado_ia.ifc";
 
   async function cargarIFC() {
